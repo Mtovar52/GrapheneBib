@@ -4,12 +4,14 @@ from db.entity.user_entity import User
 from repository.repo_book import Books_repository
 from service.user_service import Service_users
 from service.book_service import Service_books
-from typing import Optional, List
-from graphene import ObjectType, Schema
+#from typing import Optional, List
+from db.schema.book_schema import schema
+from starlette_graphene3 import GraphQLApp
 
-router = APIRouter()
+router = APIRouter() 
 
-@router.get("/books", response_model=List[Book])  #endPoint1, Consulta base interna y Api Google
+
+@router.get("/books", response_model=None)  #endPoint1, Consulta base interna y Api Google
 async def read_books(
     title: str = None,
     subtitle: str = None,
@@ -22,7 +24,9 @@ async def read_books(
     result=service.read_books(title, subtitle, author, category, published_date, publisher)
     return result
 
-@router.post("/books")  #endPoint2, Crear libro en db interna con info de Api Google books
+router.add_route("/graphql", GraphQLApp(schema=schema))
+
+'''@router.post("/books")  #endPoint2, Crear libro en db interna con info de Api Google books
 async def create_book(data_book: Book, source: str, selfLink: Optional[str] = None):
     service = Service_books()
     result= service.create_book(data_book,source, selfLink)
@@ -52,5 +56,6 @@ async def user(data_user: User):
 def get_user(email: str):
     service = Service_users()
     result = service.get_user(email)
-    return result
+    return result'''
+
 

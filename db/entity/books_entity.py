@@ -1,6 +1,6 @@
 import graphene
 
-class Book(graphene.ObjectType):
+class Book(graphene.ObjectType): 
     id: graphene.Int()
     title: graphene.String()
     subtitle: graphene.String()
