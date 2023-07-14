@@ -6,7 +6,7 @@ from sqlalchemy import Text
 books = Table(
     'books', meta_data,
     Column('id', Integer, primary_key=True),
-    Column('title', String(255), nullable=False),
+    Column('title', String(255), nullable=False), 
     Column('subtitle', String(255), nullable=False),
     Column('author', String(255), nullable=False),
     Column('category', String(255), nullable=False),

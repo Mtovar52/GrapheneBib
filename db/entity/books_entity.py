@@ -5,7 +5,7 @@ import strawberry
 class Book: 
     id: str
     title: str
-    subtitle: str
+    subtitle: str  
     author: str
     category: str
     publisher: str

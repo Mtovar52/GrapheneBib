@@ -8,7 +8,7 @@ import strawberry
 @strawberry.type
 class Query:
     @strawberry.field
-    def books()-> List[Book]:
+    def books()-> List[Book]: 
         data_books = [
             Book(
                 
