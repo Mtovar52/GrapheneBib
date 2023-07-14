@@ -6,10 +6,11 @@ from service.user_service import Service_users
 from service.book_service import Service_books
 #from typing import Optional, List
 from db.schema.book_schema import schema
-from starlette_graphene3 import GraphQLApp
+#from starlette_graphene3 import GraphQLApp
+from strawberry.asgi import GraphQL
+
 
 router = APIRouter() 
-
 
 @router.get("/books", response_model=None)  #endPoint1, Consulta base interna y Api Google
 async def read_books(
@@ -24,7 +25,19 @@ async def read_books(
     result=service.read_books(title, subtitle, author, category, published_date, publisher)
     return result
 
-router.add_route("/graphql", GraphQLApp(schema=schema))
+@router.get("/hola")
+def get_hola():
+    return "Hola todos"
+
+router.add_route("/graphql", GraphQL(schema, debug=True))
+
+
+
+    
+
+
+
+#router.add_route("/graphql", GraphQLApp(schema=schema))
 
 '''@router.post("/books")  #endPoint2, Crear libro en db interna con info de Api Google books
 async def create_book(data_book: Book, source: str, selfLink: Optional[str] = None):

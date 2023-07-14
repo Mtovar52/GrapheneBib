@@ -1,8 +1,38 @@
-import graphene
+#import graphene
 from db.entity.books_entity import Book 
-from repository.repo_book import Books_repository 
+#from repository.repo_book import Books_repository 
+from typing import List
+import strawberry
 
-#### CONSULTAS  get #####
+
+@strawberry.type
+class Query:
+    @strawberry.field
+    def books()-> List[Book]:
+        data_books = [
+            Book(
+                
+                title="graphene.String()",
+                subtitle="graphene.String()",
+                author="graphene.String()",
+                category="graphene.String()",
+                published_date="graphene.String()",
+                publisher="graphene.String()",
+                description="ss",
+                image="graphene.String()",
+                state=1
+                     )
+        ]
+        return data_books
+            
+
+schema = strawberry.Schema(query=Query)
+
+
+
+
+
+'''#### CONSULTAS  get #####
 class Query(graphene.ObjectType):
     book = graphene.List(Book)
     books = graphene.List(
@@ -34,4 +64,4 @@ class Mutation(graphene.ObjectType):
     pass
 
 
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query)'''

@@ -1,6 +1,22 @@
-import graphene
+#import graphene
+import strawberry
 
-class Book(graphene.ObjectType): 
+@strawberry.type
+class Book: 
+    id: str
+    title: str
+    subtitle: str
+    author: str
+    category: str
+    publisher: str
+    publishedDate: str
+    description: str
+    image: str
+    state: int
+
+
+
+'''class Book: 
     id: graphene.Int()
     title: graphene.String()
     subtitle: graphene.String()
@@ -11,4 +27,4 @@ class Book(graphene.ObjectType):
     description: graphene.String()
     image: graphene.String()
     state: graphene.Int()
-
+'''
